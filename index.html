@@ -1,0 +1,724 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>ΞLYS1UM Collective</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<meta name="description" content="ΞLYS1UM, collectif de musique électronique à Paris. We open portals. You cross them.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Unbounded:wght@300;500;800&family=IBM+Plex+Sans:wght@300;400;500&family=JetBrains+Mono:wght@400;600&display=swap">
+<style>
+/* Layout: one vertical "traversée". A luminous fracture runs through the hero, then the page reads
+   like a system console: manifesto, the four Maisons, the protocol, the signal channels. */
+:root {
+  --void: #05060b;
+  --deep: #0a0c15;
+  --panel: #0f1220;
+  --line: rgba(196, 204, 255, 0.12);
+  --line-strong: rgba(196, 204, 255, 0.26);
+  --text: #e9eaf4;
+  --muted: #8d91ab;
+  --core: #e4ddff;
+  --accent: #b9a8ff;          /* the system's own light; each Maison overrides it */
+  --aether: #ff3045;
+  --mycelium: #38e3c4;
+  --solaris: #ffc24a;
+  --somnia: #8db3ff;
+
+  --f-display: "Unbounded", "Arial Black", system-ui, sans-serif;
+  --f-body: "IBM Plex Sans", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --f-mono: "JetBrains Mono", ui-monospace, "SFMono-Regular", Menlo, Consolas, monospace;
+
+  --gutter-l: max(16px, env(safe-area-inset-left, 0px));
+  --gutter-r: max(16px, env(safe-area-inset-right, 0px));
+  --maxw: 1180px;
+  color-scheme: dark;
+}
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; background: var(--void); }
+body {
+  background: var(--void);
+  color: var(--text);
+  font-family: var(--f-body);
+  font-size: 16px;
+  line-height: 1.6;
+  font-weight: 300;
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+}
+::selection { background: var(--accent); color: var(--void); }
+a { color: inherit; }
+a:focus-visible, button:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
+
+.wrap {
+  max-width: var(--maxw);
+  margin-inline: auto;
+  padding-left: var(--gutter-l);
+  padding-right: var(--gutter-r);
+}
+.mono { font-family: var(--f-mono); font-size: 12px; letter-spacing: 0.14em; text-transform: uppercase; }
+
+/* ---------- Wordmark: the Ξ is drawn, never left to font fallback ---------- */
+.mark { display: inline-flex; align-items: center; gap: 0.08em; font-family: var(--f-display); font-weight: 800; letter-spacing: 0.04em; line-height: 1; text-decoration: none; }
+.xi { display: inline-flex; flex-direction: column; justify-content: space-between; width: 0.72em; height: 0.72em; margin-right: 0.04em; }
+.xi i { display: block; height: 0.12em; background: currentColor; }
+.xi i:nth-child(2) { margin-inline: 0.12em; }
+.mark .one { color: var(--accent); transition: color .6s; }
+
+/* ---------- Header ---------- */
+body::before { content: ""; position: fixed; inset: 0 0 auto; height: env(safe-area-inset-top, 0px); z-index: 10; background: var(--void); }
+.top {
+  position: sticky; top: env(safe-area-inset-top, 0px); z-index: 9;
+  background: linear-gradient(to bottom, rgba(5,6,11,.92), rgba(5,6,11,.62));
+  backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px);
+  border-bottom: 1px solid var(--line);
+}
+.top .wrap { display: flex; align-items: center; justify-content: space-between; gap: 24px; height: 62px; }
+.top .mark { font-size: 20px; }
+.top nav { display: flex; gap: 28px; }
+.top nav a { text-decoration: none; color: var(--muted); transition: color .2s; }
+.top nav a:hover { color: var(--text); }
+.status { display: inline-flex; align-items: center; gap: 10px; color: var(--muted); white-space: nowrap; }
+.dot { width: 7px; height: 7px; border-radius: 50%; background: var(--accent); box-shadow: 0 0 10px var(--accent); animation: blink 1.6s steps(2, jump-none) infinite; }
+@keyframes blink { 50% { opacity: .25; } }
+
+/* ---------- Hero ---------- */
+.hero { position: relative; min-height: clamp(580px, 88vh, 900px); display: grid; align-items: end; overflow: hidden; isolation: isolate; border-bottom: 1px solid var(--line); }
+#breach { position: absolute; inset: 0; width: 100%; height: 100%; z-index: -1; display: block; }
+.hero::after { content: ""; position: absolute; inset: 0; z-index: -1; pointer-events: none;
+  background: radial-gradient(ellipse at 50% 45%, transparent 30%, rgba(5,6,11,.55) 75%, var(--void) 100%),
+              repeating-linear-gradient(to bottom, rgba(255,255,255,.025) 0 1px, transparent 1px 3px); }
+.hero .wrap { width: 100%; padding-block: 120px 56px; display: grid; gap: 28px; }
+.hero-meta { display: flex; justify-content: space-between; flex-wrap: wrap; gap: 12px 24px; color: var(--muted); }
+.hero h1 { margin: 0; font-family: var(--f-display); font-weight: 800; font-size: clamp(44px, 11vw, 168px); line-height: .9; letter-spacing: -0.01em; }
+.hero h1 .mark { font-size: 1em; }
+.mantra { margin: 0; font-family: var(--f-display); font-weight: 300; font-size: clamp(20px, 3vw, 34px); line-height: 1.2; max-width: 22ch; text-wrap: balance; }
+.mantra b { font-weight: 500; color: var(--accent); transition: color .6s; }
+.hero-foot { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 20px; }
+.lede { margin: 0; max-width: 46ch; color: #c5c8db; }
+.btns { display: flex; flex-wrap: wrap; gap: 12px; }
+.btn { display: inline-flex; align-items: center; gap: 10px; padding: 14px 20px; text-decoration: none; border: 1px solid var(--line-strong); color: var(--text); background: rgba(10,12,21,.5); transition: border-color .2s, background .2s, color .2s; }
+.btn:hover { border-color: var(--accent); }
+.btn.primary { background: var(--accent); border-color: var(--accent); color: var(--void); font-weight: 600; }
+.btn.primary:hover { background: var(--core); border-color: var(--core); }
+.btn svg { width: 16px; height: 16px; }
+
+/* ---------- Ticker ---------- */
+.ticker { border-bottom: 1px solid var(--line); overflow: hidden; color: var(--muted); background: var(--deep); }
+.ticker-track { display: flex; gap: 48px; width: max-content; padding-block: 14px; animation: tick 38s linear infinite; }
+.ticker-track span::before { content: "◇ "; color: var(--accent); }
+@keyframes tick { to { transform: translateX(-50%); } }
+
+/* ---------- Sections ---------- */
+section.block { padding-block: clamp(72px, 11vw, 140px); border-bottom: 1px solid var(--line); position: relative; }
+.eyebrow { display: flex; align-items: center; gap: 14px; color: var(--muted); margin-bottom: 36px; }
+.eyebrow::after { content: ""; flex: 1; height: 1px; background: var(--line); }
+.eyebrow b { color: var(--accent); font-weight: 600; transition: color .6s; }
+h2 { margin: 0; font-family: var(--f-display); font-weight: 500; font-size: clamp(30px, 5vw, 60px); line-height: 1.05; letter-spacing: -0.01em; text-wrap: balance; }
+p { margin: 0; }
+
+/* Manifeste */
+.manifest { display: grid; grid-template-columns: minmax(0, 1.25fr) minmax(0, 1fr); gap: clamp(32px, 6vw, 96px); align-items: start; }
+.negations { font-family: var(--f-display); font-weight: 300; font-size: clamp(28px, 4.6vw, 58px); line-height: 1.08; margin: 0; }
+.negations span { display: block; color: var(--muted); }
+.negations s { text-decoration-thickness: 2px; text-decoration-color: var(--accent); }
+.negations strong { display: block; font-weight: 800; color: var(--text); margin-top: .25em; }
+.manifest-side { display: grid; gap: 22px; color: #c5c8db; max-width: 52ch; }
+.manifest-side .call { font-family: var(--f-mono); font-size: 14px; line-height: 2; color: var(--text); border-left: 1px solid var(--accent); padding-left: 18px; }
+
+/* Origine */
+.origin { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 1px; background: var(--line); border: 1px solid var(--line); margin-top: 56px; }
+.origin > div { background: var(--void); padding: 28px; display: grid; gap: 12px; align-content: start; }
+.origin h3 { margin: 0; font-family: var(--f-mono); font-size: 12px; font-weight: 600; letter-spacing: .14em; text-transform: uppercase; color: var(--accent); transition: color .6s; }
+.origin p { color: #c5c8db; font-size: 15px; }
+
+/* Maisons */
+.houses-head { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 0.8fr); gap: 32px; align-items: end; margin-bottom: 48px; }
+.houses-head p { color: #c5c8db; max-width: 48ch; }
+.houses { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 1px; background: var(--line); border: 1px solid var(--line); }
+.house {
+  --h: var(--accent);
+  position: relative; background: var(--void); padding: 28px 24px 26px; display: grid; gap: 18px; align-content: start;
+  cursor: default; transition: background .4s; overflow: hidden; outline: none;
+}
+.house::before { content: ""; position: absolute; left: 50%; top: 0; bottom: 0; width: 1px; background: linear-gradient(to bottom, transparent, var(--h), transparent); opacity: 0; transform: scaleY(.3); transition: opacity .5s, transform .7s; }
+.house:hover::before, .house:focus-visible::before, .house.on::before { opacity: .55; transform: scaleY(1); }
+.house:hover, .house:focus-visible, .house.on { background: color-mix(in srgb, var(--h) 7%, var(--void)); }
+.house[data-house="aether"] { --h: var(--aether); }
+.house[data-house="mycelium"] { --h: var(--mycelium); }
+.house[data-house="solaris"] { --h: var(--solaris); }
+.house[data-house="somnia"] { --h: var(--somnia); }
+.house .idx { display: flex; justify-content: space-between; color: var(--muted); position: relative; }
+.house .idx b { color: var(--h); font-weight: 600; }
+.glyph { width: 64px; height: 64px; position: relative; }
+.glyph svg { width: 100%; height: 100%; overflow: visible; }
+.glyph svg * { fill: none; stroke: var(--h); stroke-width: 1.4; }
+.house h3 { margin: 0; font-family: var(--f-display); font-weight: 800; font-size: clamp(19px, 1.9vw, 24px); letter-spacing: .02em; position: relative; overflow-wrap: anywhere; }
+.house .sub { color: var(--h); margin-top: -10px; position: relative; }
+.house .def { color: #c5c8db; font-size: 15px; position: relative; }
+.chips { display: flex; flex-wrap: wrap; gap: 6px; position: relative; }
+.chips span { font-family: var(--f-mono); font-size: 11px; letter-spacing: .06em; padding: 4px 8px; border: 1px solid var(--line-strong); color: var(--text); }
+.house dl { margin: 0; display: grid; gap: 4px; position: relative; border-top: 1px solid var(--line); padding-top: 14px; }
+.house dt { color: var(--muted); }
+.house dd { margin: 0; font-size: 14px; }
+.narrative { margin-top: 28px; color: var(--muted); display: flex; flex-wrap: wrap; gap: 8px 18px; }
+.narrative span b { color: var(--text); font-weight: 400; }
+
+/* Protocole */
+.protocol { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 0; margin-top: 56px; position: relative; }
+.protocol::before { content: ""; position: absolute; left: 0; right: 0; top: 9px; height: 1px; background: linear-gradient(to right, var(--accent), var(--line-strong) 40%, var(--line-strong) 70%, transparent); }
+.step { position: relative; padding-right: 28px; display: grid; gap: 12px; align-content: start; }
+.step .node { width: 19px; height: 19px; border: 1px solid var(--accent); background: var(--void); transform: rotate(45deg); position: relative; transition: border-color .6s; }
+.step .node::after { content: ""; position: absolute; inset: 5px; background: var(--accent); transition: background .6s; }
+.step .k { color: var(--muted); margin-top: 14px; }
+.step h3 { margin: 0; font-family: var(--f-display); font-weight: 500; font-size: 22px; }
+.step p { color: #c5c8db; font-size: 15px; max-width: 30ch; }
+
+.cycle { margin-top: 80px; display: grid; grid-template-columns: minmax(0, 0.8fr) minmax(0, 1.2fr); gap: clamp(32px, 6vw, 80px); }
+.cycle h3 { margin: 0 0 12px; font-family: var(--f-display); font-weight: 500; font-size: 26px; }
+.cycle > div:first-child p { color: #c5c8db; max-width: 40ch; }
+.console { border: 1px solid var(--line-strong); background: var(--deep); font-family: var(--f-mono); font-size: 13px; }
+.console-bar { display: flex; justify-content: space-between; padding: 10px 16px; border-bottom: 1px solid var(--line); color: var(--muted); font-size: 11px; letter-spacing: .14em; }
+.console ol { list-style: none; margin: 0; padding: 8px 0; }
+.console li { display: grid; grid-template-columns: 70px minmax(0, 1fr) auto; gap: 16px; padding: 12px 16px; align-items: baseline; border-bottom: 1px dashed var(--line); }
+.console li:last-child { border-bottom: 0; }
+.console .t { color: var(--accent); font-variant-numeric: tabular-nums; transition: color .6s; }
+.console .what { color: var(--text); }
+.console .what small { display: block; color: var(--muted); font-size: 12px; margin-top: 2px; }
+.console .sig { color: var(--muted); font-size: 11px; letter-spacing: .1em; text-align: right; }
+
+/* Signal / prochaine activation */
+.signal { display: grid; grid-template-columns: minmax(0, 1.1fr) minmax(0, 1fr); gap: clamp(32px, 6vw, 80px); align-items: center; }
+.signal-panel { border: 1px solid var(--line-strong); background: var(--deep); padding: 28px; display: grid; gap: 20px; position: relative; overflow: hidden; }
+.signal-panel::before { content: ""; position: absolute; inset: 0; background: repeating-linear-gradient(to bottom, transparent 0 3px, rgba(255,255,255,.02) 3px 4px); pointer-events: none; }
+.meter { display: grid; gap: 8px; }
+.meter-row { display: flex; justify-content: space-between; color: var(--muted); }
+.meter-row b { color: var(--text); font-weight: 600; }
+.bar { height: 6px; background: var(--line); position: relative; overflow: hidden; }
+.bar i { position: absolute; inset: 0 auto 0 0; width: 12%; background: var(--accent); box-shadow: 0 0 12px var(--accent); animation: scan 3.4s ease-in-out infinite alternate; }
+@keyframes scan { to { width: 34%; } }
+.readout { display: grid; grid-template-columns: auto minmax(0, 1fr); gap: 8px 20px; font-family: var(--f-mono); font-size: 13px; }
+.readout dt { color: var(--muted); }
+.readout dd { margin: 0; }
+
+.channels { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 1px; background: var(--line); border: 1px solid var(--line); margin-top: 64px; }
+.channel { background: var(--void); padding: 26px; display: grid; gap: 10px; align-content: start; text-decoration: none; transition: background .3s; }
+a.channel:hover { background: var(--panel); }
+.channel .mono { color: var(--accent); transition: color .6s; }
+.channel h3 { margin: 0; font-family: var(--f-display); font-weight: 500; font-size: 20px; overflow-wrap: anywhere; }
+.channel p { color: #c5c8db; font-size: 15px; }
+
+/* Fragments */
+.frags { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 12px; margin-top: 48px; }
+.frag { aspect-ratio: 4 / 5; max-width: 100%; position: relative; border: 1px solid var(--line); overflow: hidden; background: var(--deep); }
+.frag canvas { width: 100%; height: 100%; display: block; }
+.frag span { position: absolute; left: 12px; bottom: 10px; color: var(--muted); font-family: var(--f-mono); font-size: 11px; letter-spacing: .12em; }
+.frag:nth-child(2n) { transform: translateY(28px); }
+
+/* Footer */
+footer { padding-block: 80px 48px; }
+.foot { display: grid; gap: 40px; }
+.foot-mantra { font-family: var(--f-display); font-weight: 800; font-size: clamp(32px, 7vw, 96px); line-height: .95; letter-spacing: -0.01em; }
+.foot-mantra span { color: var(--accent); transition: color .6s; }
+.foot-row { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 16px; color: var(--muted); border-top: 1px solid var(--line); padding-top: 24px; }
+
+/* Glitch on the hero wordmark */
+.glitch { position: relative; display: inline-block; }
+.glitch::before, .glitch::after { content: attr(data-text); position: absolute; inset: 0; opacity: 0; pointer-events: none; }
+.glitch.go::before { opacity: .8; color: var(--accent); transform: translate(-3px, 0); clip-path: inset(10% 0 55% 0); }
+.glitch.go::after { opacity: .8; color: #6ff; transform: translate(3px, 0); clip-path: inset(60% 0 8% 0); mix-blend-mode: screen; }
+
+/* ---------- Responsive ---------- */
+@media (max-width: 980px) {
+  .houses { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .protocol { grid-template-columns: repeat(2, minmax(0, 1fr)); row-gap: 48px; }
+  .protocol::before { display: none; }
+  .frags { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+@media (max-width: 820px) {
+  .top nav { display: none; }
+  .manifest, .houses-head, .cycle, .signal { grid-template-columns: minmax(0, 1fr); }
+  .origin, .channels { grid-template-columns: minmax(0, 1fr); }
+}
+@media (max-width: 560px) {
+  .houses, .protocol { grid-template-columns: minmax(0, 1fr); }
+  .status .label { display: none; }
+  .console li { grid-template-columns: 56px minmax(0, 1fr); }
+  .console .sig { grid-column: 2; text-align: left; }
+  .hero .wrap { padding-block: 96px 40px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  .ticker-track, .dot, .bar i { animation: none; }
+}
+</style>
+</head>
+<body>
+
+
+<header class="top">
+  <div class="wrap">
+    <a class="mark" href="#top" aria-label="ΞLYS1UM, accueil"><span class="xi" aria-hidden="true"><i></i><i></i><i></i></span>LYS<span class="one">1</span>UM</a>
+    <nav aria-label="Sections">
+      <a class="mono" href="#manifeste">Manifeste</a>
+      <a class="mono" href="#maisons">Maisons</a>
+      <a class="mono" href="#protocole">Protocole</a>
+      <a class="mono" href="#signal">Signal</a>
+    </nav>
+    <span class="status mono"><span class="dot" aria-hidden="true"></span><span class="label">Breach status:&nbsp;</span><span id="statusText">Latent</span></span>
+  </div>
+</header>
+
+<main id="top">
+  <section class="hero" aria-label="ΞLYS1UM">
+    <canvas id="breach" aria-hidden="true"></canvas>
+    <div class="wrap">
+      <div class="hero-meta mono">
+        <span>Collectif de musique électronique</span>
+        <span>Paris · 48.8566° N, 2.3522° E</span>
+      </div>
+      <h1><span class="glitch" id="glitch" data-text="ΞLYS1UM"><span class="mark"><span class="xi" aria-hidden="true"><i></i><i></i><i></i></span>LYS<span class="one">1</span>UM</span></span></h1>
+      <div class="hero-foot">
+        <p class="mantra">We open portals. <b>You cross them.</b></p>
+        <div class="btns">
+          <a class="btn primary mono" href="https://www.instagram.com/elys1um.system/" target="_blank" rel="noopener">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4.2"/><circle cx="17.4" cy="6.6" r="1" fill="currentColor" stroke="none"/></svg>
+            Follow the signal
+          </a>
+          <a class="btn mono" href="#manifeste">Entrer dans le système</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="ticker mono" aria-hidden="true">
+    <div class="ticker-track">
+      <span>Signal detected</span><span>Protocol active</span><span>Follow the signal</span><span>The breach opens</span><span>Breach status: latent</span><span>Signal locked: 00%</span><span>Aethercore · Mycelium · Solaris · Somnia</span>
+      <span>Signal detected</span><span>Protocol active</span><span>Follow the signal</span><span>The breach opens</span><span>Breach status: latent</span><span>Signal locked: 00%</span><span>Aethercore · Mycelium · Solaris · Somnia</span>
+    </div>
+  </div>
+
+  <section class="block" id="manifeste">
+    <div class="wrap">
+      <div class="eyebrow mono"><b>//</b> Manifeste</div>
+      <div class="manifest">
+        <p class="negations">
+          <span>ΞLYS1UM n’est pas <s>une soirée</s>.</span>
+          <span>ΞLYS1UM n’est pas <s>un lieu</s>.</span>
+          <strong>ΞLYS1UM est un système.</strong>
+        </p>
+        <div class="manifest-side">
+          <p>Un réacteur. Un protocole qui permet d’activer une brèche dans le réel : une ouverture instable, temporaire, par laquelle on traverse des états émotionnels à travers le son, l’espace et le collectif.</p>
+          <p class="call">Nous envoyons un signal.<br>Vous le recevez.<br>Vous traversez.</p>
+          <p>Ceux qui entrent ne sont pas des spectateurs. Ils deviennent des <em>Traversants</em>. Ils ne consomment pas une expérience, ils participent à son existence. Chaque ouverture est unique et ne sera jamais reproduite à l’identique.</p>
+        </div>
+      </div>
+
+      <div class="origin">
+        <div>
+          <h3>Origine · Élysium</h3>
+          <p>Dans la mythologie grecque, l’Élysium est un lieu inaccessible aux vivants, réservé à ceux qui ont franchi un seuil. Pas un paradis : un état, sans douleur ni souffrance.</p>
+        </div>
+        <div>
+          <h3>Hypothèse · ΞLYS1UM</h3>
+          <p>Et si ce lieu n’était pas fixe ? Et s’il apparaissait temporairement dans notre réalité, sous la forme d’une anomalie dans le réel ?</p>
+        </div>
+        <div>
+          <h3>Rôle · Le collectif</h3>
+          <p>Le collectif n’est pas l’origine de la brèche, il en est le catalyseur. Son, scénographie, lumières, line-up, sécurité, collectif humain : sans ces éléments, la brèche ne tient pas.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="block" id="maisons">
+    <div class="wrap">
+      <div class="eyebrow mono"><b>//</b> Les Maisons</div>
+      <div class="houses-head">
+        <h2>Quatre états. Un seul Core.</h2>
+        <p>Une Maison n’est pas un genre musical, c’est une énergie. Chaque événement active une Maison, et chaque Traversant y réagit selon son état intérieur.</p>
+      </div>
+
+      <div class="houses" role="list">
+        <article class="house" data-house="aether" tabindex="0" role="listitem">
+          <div class="idx mono"><span>Maison</span><b>Rupture</b></div>
+          <div class="glyph" aria-hidden="true"><svg viewBox="0 0 64 64"><path d="M32 4 L60 56 H4 Z"/><path d="M32 18 L28 34 L35 38 L30 56"/><circle cx="32" cy="38" r="3"/></svg></div>
+          <h3>AETHERCORE</h3>
+          <div class="sub mono">Maison de l’obscurité</div>
+          <p class="def">La chambre de pression du système. L’énergie accumulée explose, la tension devient catharsis, le collectif se libère par l’impact sonore.</p>
+          <div class="chips"><span>Hardstyle</span><span>Acidcore</span><span>Tribe</span><span>Hardcore</span><span>Uptempo</span></div>
+          <dl><dt class="mono">Émotions</dt><dd>Brutalité · Catharsis · Libération du sombre</dd></dl>
+        </article>
+
+        <article class="house" data-house="mycelium" tabindex="0" role="listitem">
+          <div class="idx mono"><span>Maison</span><b>Connexion</b></div>
+          <div class="glyph" aria-hidden="true"><svg viewBox="0 0 64 64"><circle cx="32" cy="32" r="26"/><circle cx="32" cy="32" r="13"/><circle cx="32" cy="19" r="13"/><circle cx="32" cy="45" r="13"/><circle cx="20.7" cy="25.5" r="13"/><circle cx="43.3" cy="38.5" r="13"/></svg></div>
+          <h3>MYCELIUM</h3>
+          <div class="sub mono">Maison de la transcendance</div>
+          <p class="def">Le réseau de conscience du système. Le son devient vortex, passage mental, fréquence spirituelle, et reconnecte les Traversants à eux-mêmes et aux autres.</p>
+          <div class="chips"><span>Psytrance</span></div>
+          <dl><dt class="mono">Émotions</dt><dd>Expansion · Élévation · Unité · Voyage intérieur</dd></dl>
+        </article>
+
+        <article class="house" data-house="solaris" tabindex="0" role="listitem">
+          <div class="idx mono"><span>Maison</span><b>Équilibre</b></div>
+          <div class="glyph" aria-hidden="true"><svg viewBox="0 0 64 64"><circle cx="32" cy="32" r="10"/><circle cx="32" cy="32" r="20"/><path d="M32 2v8M32 54v8M2 32h8M54 32h8M10.8 10.8l5.6 5.6M47.6 47.6l5.6 5.6M10.8 53.2l5.6-5.6M47.6 16.4l5.6-5.6"/></svg></div>
+          <h3>SOLARIS</h3>
+          <div class="sub mono">Maison des lumières</div>
+          <p class="def">L’impulsion vitale du système. Le mouvement, l’énergie positive, l’abandon joyeux et la propulsion collective.</p>
+          <div class="chips"><span>Hard trance</span><span>Hard bounce</span></div>
+          <dl><dt class="mono">Émotions</dt><dd>Propulsion · Euphorie · Célébration collective</dd></dl>
+        </article>
+
+        <article class="house" data-house="somnia" tabindex="0" role="listitem">
+          <div class="idx mono"><span>Maison</span><b>Dissolution</b></div>
+          <div class="glyph" aria-hidden="true"><svg viewBox="0 0 64 64"><rect x="4" y="4" width="56" height="56"/><rect x="14" y="14" width="36" height="36"/><rect x="22" y="22" width="20" height="20"/><rect x="28" y="28" width="8" height="8"/><path d="M4 4l24 24M60 4L36 28M4 60l24-24M60 60L36 36"/></svg></div>
+          <h3>SOMNIA</h3>
+          <div class="sub mono">Maison de l’immersion · Hypnosis</div>
+          <p class="def">La dissolution des frontières mentales. Le son agit comme une boucle infinie : état flottant, dérive commune, suspension du réel.</p>
+          <div class="chips"><span>Hypnotic techno</span><span>Groove</span><span>Hard groove</span><span>Hard techno</span><span>Acid</span></div>
+          <dl><dt class="mono">Émotions</dt><dd>Immersion · Loop · Vertige · Flottement</dd></dl>
+        </article>
+      </div>
+      <p class="narrative mono">
+        <span><b>Aethercore</b> rupture</span><span>→</span>
+        <span><b>Mycelium</b> transcendance</span><span>→</span>
+        <span><b>Solaris</b> joie</span><span>→</span>
+        <span><b>Somnia</b> dissolution</span>
+        <span>· Chaque événement est un chapitre.</span>
+      </p>
+    </div>
+  </section>
+
+  <section class="block" id="protocole">
+    <div class="wrap">
+      <div class="eyebrow mono"><b>//</b> Protocole ΞLYS1UM</div>
+      <h2>Sans activation, le système est latent. Avec activation, la brèche s’ouvre.</h2>
+
+      <div class="protocol">
+        <div class="step">
+          <div class="node" aria-hidden="true"></div>
+          <div class="k mono">Phase 1</div>
+          <h3>Ouverture</h3>
+          <p>Le signal précède la brèche. À un moment précis, dans un lieu non fixe, la faille apparaît.</p>
+        </div>
+        <div class="step">
+          <div class="node" aria-hidden="true"></div>
+          <div class="k mono">Phase 2</div>
+          <h3>Traversée</h3>
+          <p>Le monde extérieur disparaît. Le collectif devient une entité, le son devient le langage.</p>
+        </div>
+        <div class="step">
+          <div class="node" aria-hidden="true"></div>
+          <div class="k mono">Phase 3</div>
+          <h3>Dissolution</h3>
+          <p>Le temps se dilate, les repères s’effacent, les identités individuelles se fondent.</p>
+        </div>
+        <div class="step">
+          <div class="node" aria-hidden="true"></div>
+          <div class="k mono">Phase 4</div>
+          <h3>Fermeture</h3>
+          <p>La brèche se referme. Les Traversants ressortent, jamais totalement identiques.</p>
+        </div>
+      </div>
+
+      <div class="cycle">
+        <div>
+          <h3>Le cycle du signal</h3>
+          <p>Le signal n’explique rien, il annonce. Il ne s’adresse pas à tous : il est perçu par ceux qui sont prêts à le recevoir. Ce n’est pas une invitation. C’est un appel.</p>
+        </div>
+        <div class="console" role="group" aria-label="Cycle de communication">
+          <div class="console-bar"><span>TRANSMISSION LOG</span><span>4 ÉTAPES</span></div>
+          <ol>
+            <li><span class="t">J-21</span><span class="what">Le Signal<small>Annonce de l’activation et révélation de la Maison</small></span><span class="sig">SIGNAL DETECTED</span></li>
+            <li><span class="t">J-14</span><span class="what">Invocation<small>Line-up : les passeurs, un par jour en story</small></span><span class="sig">FOLLOW THE SIGNAL</span></li>
+            <li><span class="t">J-1</span><span class="what">Teasing final<small>Tension maximale</small></span><span class="sig">BREACH STATUS: CRITICAL</span></li>
+            <li><span class="t">J+30</span><span class="what">Fragments<small>Photos, aftermovie, archives</small></span><span class="sig">MEMORY · PROOF</span></li>
+          </ol>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="block" id="signal">
+    <div class="wrap">
+      <div class="eyebrow mono"><b>//</b> Prochaine activation</div>
+      <div class="signal">
+        <div style="display:grid;gap:22px">
+          <h2>Le système est latent. Le prochain signal arrive.</h2>
+          <p style="color:#c5c8db;max-width:46ch">La date, la Maison et le lieu sont révélés sur Instagram trois semaines avant l’ouverture. La localisation exacte n’est transmise qu’aux Traversants.</p>
+          <div class="btns">
+            <a class="btn primary mono" href="https://www.instagram.com/elys1um.system/" target="_blank" rel="noopener">Recevoir le signal</a>
+          </div>
+        </div>
+        <div class="signal-panel mono" aria-label="État du système">
+          <div class="meter">
+            <div class="meter-row"><span>Signal locked</span><b id="lockPct">12%</b></div>
+            <div class="bar"><i></i></div>
+          </div>
+          <dl class="readout">
+            <dt>Breach status</dt><dd>Latent</dd>
+            <dt>Maison</dt><dd id="houseReadout">Non révélée</dd>
+            <dt>Dernière ouverture</dt><dd>14.11.2026 · Paris</dd>
+            <dt>Coordonnées</dt><dd>Transmises via Signal</dd>
+          </dl>
+        </div>
+      </div>
+
+      <div class="channels">
+        <a class="channel" href="https://www.instagram.com/elys1um.system/" target="_blank" rel="noopener">
+          <span class="mono">Instagram · principal</span>
+          <h3>@elys1um.system</h3>
+          <p>Signal, invocation, teasing et fragments. C’est ici que la brèche s’annonce.</p>
+        </a>
+        <div class="channel">
+          <span class="mono">WhatsApp · communauté</span>
+          <h3>La communauté</h3>
+          <p>Les infos pratiques et la vie du collectif entre deux ouvertures. Accès sur demande via Instagram.</p>
+        </div>
+        <div class="channel">
+          <span class="mono">Signal · underground</span>
+          <h3>Localisation exacte</h3>
+          <p>Le lieu de l’activation est transmis par l’application Signal, aux Traversants seulement.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="block" id="fragments">
+    <div class="wrap">
+      <div class="eyebrow mono"><b>//</b> Fragments</div>
+      <div class="houses-head">
+        <h2>Rien ne peut être emporté d’ΞLYS1UM. Sauf des fragments.</h2>
+        <p>Sensations, souvenirs, traces mentales. Les photos et aftermovies de chaque ouverture sont archivés ici et sur Instagram. Ils alimentent l’attente jusqu’au prochain signal.</p>
+      </div>
+      <div class="frags" aria-hidden="true">
+        <div class="frag" data-house="aether"><canvas></canvas><span>FRAG_001 · AETHERCORE</span></div>
+        <div class="frag" data-house="mycelium"><canvas></canvas><span>FRAG_002 · MYCELIUM</span></div>
+        <div class="frag" data-house="solaris"><canvas></canvas><span>FRAG_003 · SOLARIS</span></div>
+        <div class="frag" data-house="somnia"><canvas></canvas><span>FRAG_004 · SOMNIA</span></div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap foot">
+    <p class="foot-mantra">Une brèche s’ouvre.<br>Une Maison s’active.<br><span>Le collectif traverse.</span></p>
+    <div class="foot-row mono">
+      <span>ΞLYS1UM Collective · Paris</span>
+      <a href="https://www.instagram.com/elys1um.system/" target="_blank" rel="noopener">Instagram @elys1um.system</a>
+      <span>© 2026 · Protocol active</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+(function () {
+  const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const root = document.documentElement;
+  const css = (n) => getComputedStyle(root).getPropertyValue(n).trim();
+  const HOUSES = {
+    aether: { color: css('--aether'), name: 'Aethercore' },
+    mycelium: { color: css('--mycelium'), name: 'Mycelium' },
+    solaris: { color: css('--solaris'), name: 'Solaris' },
+    somnia: { color: css('--somnia'), name: 'Somnia' }
+  };
+  const BASE = css('--accent');
+
+  function hexToRgb(h) {
+    h = h.replace('#', '');
+    if (h.length === 3) h = h.split('').map(c => c + c).join('');
+    const n = parseInt(h, 16);
+    return [(n >> 16) & 255, (n >> 8) & 255, n & 255];
+  }
+  let target = hexToRgb(BASE), current = target.slice();
+  const rgba = (a) => `rgba(${current[0] | 0},${current[1] | 0},${current[2] | 0},${a})`;
+
+  /* ---------- Hero: the breach ---------- */
+  const cv = document.getElementById('breach');
+  const ctx = cv.getContext('2d');
+  let W = 0, H = 0, dpr = 1, crack = [], branches = [], parts = [], t0 = performance.now();
+
+  function rnd(a, b) { return a + Math.random() * (b - a); }
+  function buildCrack() {
+    crack = [];
+    const segs = 34;
+    let x = 0;
+    for (let i = 0; i <= segs; i++) {
+      const y = i / segs;
+      x += rnd(-1, 1) * 0.018;
+      x *= 0.86;
+      crack.push({ x, y, j: rnd(0, Math.PI * 2) });
+    }
+    branches = [];
+    for (let i = 0; i < 9; i++) {
+      const s = Math.floor(rnd(4, segs - 4));
+      const dir = Math.random() < 0.5 ? -1 : 1;
+      const pts = [{ dx: 0, dy: 0 }];
+      let dx = 0, dy = 0;
+      const n = Math.floor(rnd(3, 6));
+      for (let k = 0; k < n; k++) { dx += dir * rnd(0.01, 0.035); dy += rnd(-0.02, 0.03); pts.push({ dx, dy }); }
+      branches.push({ s, pts });
+    }
+  }
+  function resize() {
+    dpr = Math.min(window.devicePixelRatio || 1, 2);
+    const r = cv.getBoundingClientRect();
+    W = r.width; H = r.height;
+    cv.width = Math.round(W * dpr); cv.height = Math.round(H * dpr);
+    ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+  }
+  function spawn() {
+    const side = Math.random() < 0.5 ? -1 : 1;
+    return { x: W / 2 + side * rnd(W * 0.08, W * 0.55), y: rnd(0, H), v: rnd(0.15, 0.6), life: 1, s: rnd(0.6, 1.8) };
+  }
+
+  function frame(now) {
+    const t = (now - t0) / 1000;
+    for (let i = 0; i < 3; i++) current[i] += (target[i] - current[i]) * 0.05;
+    ctx.clearRect(0, 0, W, H);
+    ctx.fillStyle = '#05060b'; ctx.fillRect(0, 0, W, H);
+    const cx = W / 2, cy = H * 0.46;
+    const open = 0.75 + 0.25 * Math.sin(t * 0.7);
+
+    // radial core glow
+    const g = ctx.createRadialGradient(cx, cy, 0, cx, cy, Math.max(W, H) * 0.55);
+    g.addColorStop(0, rgba(0.28 * open));
+    g.addColorStop(0.35, rgba(0.07));
+    g.addColorStop(1, 'rgba(5,6,11,0)');
+    ctx.fillStyle = g; ctx.fillRect(0, 0, W, H);
+
+    // perspective grid floor
+    ctx.lineWidth = 1;
+    const horizon = H * 0.62;
+    for (let i = 0; i < 14; i++) {
+      const p = ((i + (t * 0.35) % 1) / 14);
+      const y = horizon + Math.pow(p, 2.2) * (H - horizon);
+      ctx.strokeStyle = `rgba(196,204,255,${0.03 + p * 0.07})`;
+      ctx.beginPath(); ctx.moveTo(0, y); ctx.lineTo(W, y); ctx.stroke();
+    }
+    for (let i = -12; i <= 12; i++) {
+      ctx.strokeStyle = 'rgba(196,204,255,0.05)';
+      ctx.beginPath(); ctx.moveTo(cx + i * 14, horizon); ctx.lineTo(cx + i * W * 0.16, H); ctx.stroke();
+    }
+
+    // energy rings
+    for (let i = 0; i < 4; i++) {
+      const p = ((t * 0.12 + i / 4) % 1);
+      ctx.strokeStyle = rgba(0.22 * (1 - p));
+      ctx.beginPath();
+      ctx.ellipse(cx, cy, 40 + p * W * 0.45, (40 + p * W * 0.45) * 0.28, 0, 0, Math.PI * 2);
+      ctx.stroke();
+    }
+
+    // particles drawn toward the breach
+    if (parts.length < 140) parts.push(spawn());
+    for (let i = parts.length - 1; i >= 0; i--) {
+      const p = parts[i];
+      const dx = cx - p.x;
+      p.x += Math.sign(dx) * p.v * (1 + 3 / (Math.abs(dx) / 60 + 1));
+      p.y += Math.sin(t + i) * 0.2;
+      if (Math.abs(dx) < 6) p.life -= 0.08;
+      const a = Math.min(1, Math.abs(dx) / 40) * 0.8 * p.life;
+      ctx.fillStyle = rgba(a);
+      ctx.fillRect(p.x, p.y, p.s, p.s);
+      if (p.life <= 0) parts[i] = spawn();
+    }
+
+    // the fracture
+    const top = H * 0.04, len = H * 0.86, amp = Math.min(W, 900);
+    const pts = crack.map(c => [cx + (c.x + Math.sin(t * 1.7 + c.j) * 0.0016) * amp, top + c.y * len]);
+    const stroke = (w, col, blur) => {
+      ctx.save(); ctx.lineJoin = 'miter'; ctx.lineWidth = w; ctx.strokeStyle = col; ctx.shadowBlur = blur; ctx.shadowColor = rgba(1);
+      ctx.beginPath(); pts.forEach((p, i) => i ? ctx.lineTo(p[0], p[1]) : ctx.moveTo(p[0], p[1])); ctx.stroke(); ctx.restore();
+    };
+    // aperture: a thin lens of light around the crack
+    ctx.save();
+    ctx.beginPath();
+    pts.forEach((p, i) => { const k = Math.sin((i / (pts.length - 1)) * Math.PI); const w = 2 + k * 16 * open; i ? ctx.lineTo(p[0] - w, p[1]) : ctx.moveTo(p[0] - w, p[1]); });
+    for (let i = pts.length - 1; i >= 0; i--) { const k = Math.sin((i / (pts.length - 1)) * Math.PI); const w = 2 + k * 16 * open; ctx.lineTo(pts[i][0] + w, pts[i][1]); }
+    ctx.closePath();
+    const lg = ctx.createLinearGradient(cx - 30, 0, cx + 30, 0);
+    lg.addColorStop(0, rgba(0)); lg.addColorStop(0.5, rgba(0.55)); lg.addColorStop(1, rgba(0));
+    ctx.fillStyle = lg; ctx.shadowBlur = 40; ctx.shadowColor = rgba(0.9); ctx.fill();
+    ctx.restore();
+    stroke(6, rgba(0.5), 30);
+    stroke(1.6, 'rgba(240,238,255,0.95)', 12);
+
+    // branches
+    branches.forEach((b, bi) => {
+      const o = pts[b.s];
+      const flick = 0.35 + 0.65 * Math.max(0, Math.sin(t * 2 + bi * 1.3));
+      ctx.save(); ctx.lineWidth = 1; ctx.strokeStyle = rgba(0.6 * flick); ctx.shadowBlur = 10; ctx.shadowColor = rgba(1);
+      ctx.beginPath(); b.pts.forEach((q, i) => { const x = o[0] + q.dx * amp, y = o[1] + q.dy * len; i ? ctx.lineTo(x, y) : ctx.moveTo(x, y); }); ctx.stroke(); ctx.restore();
+    });
+
+    // occasional horizontal glitch slice
+    if (!reduce && Math.random() < 0.035) {
+      const y = rnd(0, H), h = rnd(2, 14);
+      try { ctx.drawImage(cv, 0, y * dpr, cv.width, h * dpr, rnd(-18, 18), y, W, h); } catch (e) {}
+    }
+    if (!reduce) requestAnimationFrame(frame);
+  }
+
+  buildCrack(); resize();
+  window.addEventListener('resize', () => { resize(); if (reduce) frame(performance.now()); });
+  requestAnimationFrame(frame);
+
+  /* ---------- House activation: hovering a Maison recolors the whole system ---------- */
+  const readout = document.getElementById('houseReadout');
+  const statusText = document.getElementById('statusText');
+  function activate(key) {
+    const h = HOUSES[key];
+    target = hexToRgb(h ? h.color : BASE);
+    root.style.setProperty('--accent', h ? h.color : BASE);
+    statusText.textContent = h ? h.name + ' active' : 'Latent';
+    document.querySelectorAll('.house').forEach(el => el.classList.toggle('on', el.dataset.house === key));
+  }
+  document.querySelectorAll('.house').forEach(el => {
+    el.addEventListener('mouseenter', () => activate(el.dataset.house));
+    el.addEventListener('focus', () => activate(el.dataset.house));
+    el.addEventListener('click', () => activate(el.dataset.house));
+  });
+  document.querySelector('.houses').addEventListener('mouseleave', () => activate(null));
+
+  /* ---------- Glitch on the wordmark ---------- */
+  const gl = document.getElementById('glitch');
+  if (!reduce) setInterval(() => { gl.classList.add('go'); setTimeout(() => gl.classList.remove('go'), 140); }, 3800);
+
+  /* ---------- Signal lock readout ---------- */
+  const lock = document.getElementById('lockPct');
+  if (!reduce) setInterval(() => { lock.textContent = String(Math.floor(rnd(9, 34))).padStart(2, '0') + '%'; }, 1400);
+
+  /* ---------- Fragments: abstract placeholders until photos arrive ---------- */
+  document.querySelectorAll('.frag').forEach((f, n) => {
+    const c = f.querySelector('canvas'), x = c.getContext('2d');
+    const r = f.getBoundingClientRect(), d = Math.min(window.devicePixelRatio || 1, 2);
+    const w = Math.max(160, r.width), h = Math.max(200, r.height);
+    c.width = w * d; c.height = h * d; x.scale(d, d);
+    const col = HOUSES[f.dataset.house].color;
+    x.fillStyle = '#0a0c15'; x.fillRect(0, 0, w, h);
+    const g = x.createRadialGradient(w / 2, h * 0.45, 0, w / 2, h * 0.45, w * 0.8);
+    g.addColorStop(0, col + '55'); g.addColorStop(1, 'rgba(10,12,21,0)');
+    x.fillStyle = g; x.fillRect(0, 0, w, h);
+    x.strokeStyle = col; x.globalAlpha = 0.8; x.lineWidth = 1;
+    if (n === 0) { // pressure: jagged vertical fault
+      x.beginPath(); let px = w / 2; for (let y = 0; y <= h; y += 12) { px += rnd(-9, 9); x.lineTo(px, y); } x.shadowBlur = 16; x.shadowColor = col; x.stroke();
+    } else if (n === 1) { // network: mandala of circles
+      for (let i = 0; i < 12; i++) { const a = i / 12 * Math.PI * 2; x.beginPath(); x.arc(w / 2 + Math.cos(a) * w * 0.15, h * 0.45 + Math.sin(a) * w * 0.15, w * 0.15, 0, Math.PI * 2); x.stroke(); }
+    } else if (n === 2) { // halos
+      for (let i = 1; i < 9; i++) { x.globalAlpha = 0.9 - i * 0.09; x.beginPath(); x.arc(w / 2, h * 0.45, i * w * 0.06, 0, Math.PI * 2); x.stroke(); }
+    } else { // infinite tunnel
+      for (let i = 0; i < 12; i++) { const s = Math.pow(0.78, i); x.globalAlpha = 0.15 + s * 0.8; x.strokeRect(w / 2 - w * 0.45 * s, h * 0.45 - h * 0.42 * s, w * 0.9 * s, h * 0.84 * s); }
+    }
+    x.globalAlpha = 1; x.shadowBlur = 0;
+    for (let y = 0; y < h; y += 3) { x.fillStyle = 'rgba(255,255,255,0.025)'; x.fillRect(0, y, w, 1); }
+  });
+})();
+</script>
+
+</body>
+</html>
